@@ -2,21 +2,58 @@
 <html ng-app="store">
   <head>
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
-  </head>
-  <body ng-controller="StoreController as store">
     <script type="text/javascript" src="angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-
-    <div ng-repeat="product in store.products">
-      <h1>{{product.name}}</h1>
-      <h2>{{product.price}}</h2>
-      <p>{{product.description}}</p>
-      <button ng-show="product.canPurchase">Add to Cart</button>
-    </div>
+  </head>
+  
+  <body ng-controller="StoreController as store">
+    <h1 class="text-center">Sam Villaluz's Crafted Gemz hellz yaaa</h1>
+    <h2 class="text center">-an Angular.js store!!-</h2>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="product in store.products">
+        <h3>
+          {{product.name}}
+          <em class="pull-right">{{product.price | currency}}</em>
+          <img ng-src="{{product.images[0].full}}"/>
+        </h3>
+        <section ng-controller="PanelController as panel">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active: panel.isSelected(1) }">
+              <a href ng-click="panel.selectTab(1)">Description</a>
+            </li>
+            <li ng-class="{ active: panel.isSelected(2) }">
+              <a href ng-click="panel.selectTab(2)">Specifications</a>
+            </li>
+            <li ng-class="{ active: panel.isSelected(3) }">
+              <a href ng-click="panel.selectTab(3)">Reviews</a>
+            </li>
+          </ul>
+          <div class="panel" ng-show="panel.isSelected(1)">
+            <h4>Description</h4>
+            <blockquote>{{product.description}}</blockquote>
+          </div>
+          <div class="panel" ng-show="panel.isSelected(2)">
+            <h4>Specifications</h4>
+            <blockquote>Nada</blockquote>
+          </div>
+          <div class="panel" ng-show="panel.isSelected(3)">
+            <h4>Reviews</h4>
+            <blockquote>TBD man</blockquote>
+          </div>
+        </section>
+      </li>
+    </ul>
   </body>
 </html>
 
 <!--Directives: HTML annotations that trigger js behaviours
 Modules: where our app components live
 Controllers: where we add app behaviour
-Expressions: how values get displayed within pg-->
+Expressions: how values get displayed within pg
+
+Formatting with filters: {{data } | filter:options}}
+date, uppercase, limitTo, orderBy: '-price'
+Images: ng-show="(product.images).length", ng-repeat for multiple images in an array
+Dynamic: ng-click updates expression defined in {{tab}}
+Add new controllers to clean up code (isSelected,seletTab)
+-->
