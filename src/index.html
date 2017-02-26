@@ -5,22 +5,36 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <title>Sammy's Gems</title>
   </head>
 
   <body ng-controller="StoreController as store">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <p class="navbar-text">Welcome to my store!</p>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <button type="button" class="btn btn-default navbar-btn"><a href="#">Earth</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a href="#">Saturn</a></button>
+          <button type="button" class="btn btn-default navbar-btn"><a href="#">Jupiter</a></button>
+        </ul>
+      </div>
+    </nav>
     <header>
-      <h1 class="text-center">Sam Villaluz's Crafted Gemz hellz yaaa</h1>
-      <h2 class="text center">-an Angular.js store!!-</h2>
+      <h1 class="text-center"><br>Sam Villaluz's Crafts what the heck!</h1>
+      <h2 class="text-center">—*~ an Angular.js store ~*—</h2>
     </header>
     <div class="list-group">
       <div class="list-group-item" ng-repeat="product in store.products">
         <h3>
           {{product.name}}
           <em class="pull-right">{{product.price | currency}}</em>
+          <br><br>
           <img ng-src="{{product.images[0].full}}"/>
         </h3>
         <section ng-controller="PanelController as panel">
-          <ul class="nav nav-pills">
+          <ul class="nav nav-tabs nav-justified">
             <li ng-class="{ active: panel.isSelected(1) }">
               <a href ng-click="panel.selectTab(1)">Description</a>
             </li>
@@ -44,8 +58,8 @@
             <h4>Reviews</h4>
             <blockquote ng-repeat="review in product.reviews">
               <b>Stars: {{review.stars}}</b>
-              {{review.body}}
-              <cite>—{{review.author}} on: {{review.createdOn}}</cite>
+              <br>{{review.body}}
+              <cite>— {{review.author}} <br> {{review.createdOn | date}}</cite>
             </blockquote>
 
             <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
@@ -54,7 +68,7 @@
                 <b>Stars: {{reviewCtrl.review.stars}}</b>
                 <br>
                 {{reviewCtrl.review.body}}
-                <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+                <cite class="clearfix">—{{reviewCtrl.review.author}} {{reviewCtrl.review.createdOn | date}}</cite>
               </blockquote>
 
               <h4>Submit a Review</h4>
@@ -73,7 +87,7 @@
               <!--<div> reviewForm is {{reviewForm.$valid}} </div>-->
 
               <fieldset class="form-group">
-                <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+                <input type="submit" class="btn btn-info btn-block" value="Submit Review" />
               </fieldset>
             </form>
 

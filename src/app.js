@@ -48,7 +48,7 @@
         {
           stars: 5,
           body: "Super cool",
-          author: "skvillal",
+          author: "skvillal@uwaterloo.ca",
           createdOn: 1397490980837
         }
       ]
