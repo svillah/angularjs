@@ -12,8 +12,19 @@
     };
   });
 
-  app.controller('StoreController', function(){
+  app.controller("StoreController", function(){
     this.products = gems; //sets property product of controller to gem
+  });
+
+  app.controller("ReviewController", function(){
+    this.review = {};
+
+    this.addReview = function(product){
+      this.review.createdOn = Date.now();
+      product.reviews.push(this.review);
+      this.review = {};
+    };
+
   });
 
   var gems = [
@@ -31,6 +42,14 @@
         {
           full: 'assets/dodecahedron-01-full.jpg',
           thumb: 'dodecahedron-02-thumb.jpg'
+        }
+      ],
+      reviews: [
+        {
+          stars: 5,
+          body: "Super cool",
+          author: "skvillal",
+          createdOn: 1397490980837
         }
       ]
     },
